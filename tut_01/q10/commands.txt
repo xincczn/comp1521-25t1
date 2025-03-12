@@ -1,0 +1,26 @@
+As a C file gets compiled into a program, a compiler will go through a few steps
+before the code is executable. The compliation process has 4 steps.
+Each `clang` command produces a file containing the contents of the C code
+passing through each step. 
+
+1. Preprocessor (clang -E x.c)
+During this step, the compiler passes through source code (C file contents) and
+removes comments and specifically evaluating preprocessor directives.
+Preprocessor directives are code that start with `#` like `#include` and `#define`.
+- It will replace `#include` with the contents of the respective header files.
+- It will replace all #define'd constants with their values and expand all macros.
+
+2. Compliation (clang -S x.c)
+During this step, the compiler will produce a `.s` file which contains assembly code
+converted from C code. Which can be understood by an assembler.
+
+3. Assembly (clang -c x.c)
+During this step, the assembler will produce an object file `.o` which contains
+machine code. This is the second last step and majority of code (excluding libraries)
+are converted into machine instructions. 
+
+4. Linker (clang x.c)
+During this step, the linker will produce the final executable that can be run. (i.e. your program)
+The final step, links the binary libraries with the rest of the object file.
+
+Note: You can also run `gcc –save-temps x.c -o x` to generate all intermediate files
